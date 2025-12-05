@@ -1,6 +1,6 @@
 from datetime import date
 import streamlit as st
-from utils.sheets import create_write_connection
+from utils.sheets import create_connection
 import pandas as pd
 
 st.title("Add a new expense")
@@ -9,7 +9,7 @@ title = st.text_input("Expense title")
 amount = st.text_input("Amount")
 paid_by = st.selectbox("Paid by", ["Ellen", "Alex"])
 
-conn = create_write_connection()
+conn = create_connection()
 df = conn.read()
 
 if title and amount and paid_by:
