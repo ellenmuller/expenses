@@ -6,7 +6,7 @@ st.title("The Hoare Treasury")
 
 conn = create_connection()
 
-df = conn.read()
+df = conn.read(ttl=0)
 
 current_balance = calculate_debt(df)
 
