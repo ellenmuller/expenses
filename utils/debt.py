@@ -1,4 +1,3 @@
-from streamlit_gsheets import GSheetsConnection
 import streamlit as st
 
 def calculate_debt(df):
