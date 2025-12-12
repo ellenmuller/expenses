@@ -4,20 +4,12 @@ import streamlit as st
 def create_connection():
     conn = st.connection("gsheets", type=GSheetsConnection)
     return conn
-
-def calculate_debt(df):
-    contributed = {'Alex': 0, 'Ellen': 0, 'total': 0}
-    for row in df.itertuples():
-        # st.write(row)
-        contributed['total']+= (row[3])
-        if row[4]=='Ellen':
-            contributed['Ellen']+= (row[3])
-        elif row[4]=='Alex':
-            contributed['Alex']+= (row[3])
-        else:
-            st.error("something went wrong!")
     
-    return contributed
+def display_transactions(df, paid_by="Either", paid_for="Both"):
+    filtered_df = df[df['Paid for'] == paid_for]
+    if paid_by == "Either":
+        st.dataframe(filtered_df)
+    else:
+        filtered_df = filtered_df[filtered_df['Paid by'] == paid_by]
+        st.dataframe(filtered_df)
     
-def display_transactions(df):
-    st.dataframe(df)
